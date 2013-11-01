@@ -31,8 +31,10 @@ my_sum(pTHX_ CV *cv)
   return;
 }
 
+
 /* The below eschews macros where they wouldn't lead to lots of C
- * preprocessor gunk about threads when expanded. */
+ * preprocessor gunk about threads when expanded. So it does
+ * use "pTHX" and "aTHX" variants. */
 
 /* pTHX_ passes the Perl interpreter when using ithreads,
  * otherwise compiled out. */
