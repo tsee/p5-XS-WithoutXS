@@ -40,10 +40,6 @@ void my_sum_xs_macros_are_evil(pTHX_ CV *cv)
 {
   /* NOTE(ARGUNUSED(cv)) */
 
-  dVAR; /* ithreads dependent way of getting global-interpreter-vars
-           struct out of perl for faster access. To obnoxious to inline,
-           see perl.h. */
-
   /* Local copy of the global Perl argument stack pointer.
    * This is the top of the stack, not the base! */
   SV **sp = PL_stack_sp;
