@@ -29,7 +29,7 @@ sub newXS {
 # The following is all just module setup for
 # being able to access C functions without XS(Loader).
 sub setup_so_access {
-  my $pkg = shift; 
+  my $pkg = shift;
   my @pkg_components = split /::/, $pkg;
 
   my $pkg_path = join "-", @pkg_components;
