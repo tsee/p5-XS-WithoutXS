@@ -2,24 +2,17 @@ package XS::WithoutXS;
 
 use strict;
 use warnings;
-use Exporter;
 use DynaLoader ();
 
-use base 'Exporter';
-
-our $VERSION     = '0.001';
-our @EXPORT_OK;
-our %EXPORT_TAGS = ( 'all' => \@EXPORT_OK );
+our $VERSION = '0.001';
 
 my $SharedLibrary;
 
 setup_so_access(__PACKAGE__); # assuming package==dist name, see also below
 
-# Install a test subroutine!
+# Install the test subroutines!
 newXS("my_sum", "my_sum", "this_is_not_xs.c");
-push @EXPORT_OK, "my_sum";
 newXS("my_sum_no_xs_macros", "my_sum_xs_macros_are_evil", "this_is_not_xs.c");
-push @EXPORT_OK, "my_sum_no_xs_macros";
 
 
 # Locates the given symbol and, with the full assumption that
