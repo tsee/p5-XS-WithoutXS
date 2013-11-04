@@ -30,6 +30,8 @@ sub newXS {
 # being able to access C functions without XS(Loader).
 sub setup_so_access {
   my $pkg = shift;
+  return if defined $SharedLibrary;
+
   my @pkg_components = split /::/, $pkg;
 
   my $pkg_path = join "-", @pkg_components;
