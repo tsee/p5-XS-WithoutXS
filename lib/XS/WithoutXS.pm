@@ -1,6 +1,5 @@
 package XS::WithoutXS;
-
-use strict;
+use 5.12.0;
 use warnings;
 use DynaLoader ();
 
@@ -37,7 +36,8 @@ sub setup_so_access {
   my $pkg_path = join "-", @pkg_components;
   my @dirs = (map "-L$_/auto/$pkg_path", @INC);
   my (@mod_files) = DynaLoader::dl_findfile(@dirs, $pkg_components[-1]);
-  die if not @mod_files;
+  die "Failed to locate shared library for '$pkg'"
+    if not @mod_files;
 
   $SharedLibrary = DynaLoader::dl_load_file($mod_files[0]);
 }
