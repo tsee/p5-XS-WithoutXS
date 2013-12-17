@@ -7,6 +7,9 @@ Makefile.old
 blib/
 pm_to_blib
 *.o
+*.obj
+*.pdb
+*.def
 WithoutXS.bs
 WithoutXS.c
 META.yml

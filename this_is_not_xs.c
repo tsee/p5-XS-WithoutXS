@@ -55,6 +55,7 @@ void my_sum_xs_macros_are_evil(pTHX_ CV *cv)
 
   int i;
   double sum = 0.;
+  IV num_return_values;
 
   /* Move stack pointer back by number  of arguments so we have
    * more convenient access to arguments.
@@ -68,13 +69,13 @@ void my_sum_xs_macros_are_evil(pTHX_ CV *cv)
   for (i = 0; i < items; ++i)
     sum += SvNV( *(sp + i+1) ); /* sp+i+1 is the i-th arg on the stack */
 
-  const IV num_return_values = 1;
+  num_return_values = 1;
   /* Make sure we have space on the stack (in case the function was
    * called without arguments... */
-  if (PL_stack_max - sp < (ssize_t)num_return_values) {
+  if (PL_stack_max - sp < (SSize_t)num_return_values) {
     /* Oops, not enough space, extend. Needs to reset the
      * sp variable since it might have caused a proper realloc. */
-    sp = Perl_stack_grow(aTHX_ sp, sp, (ssize_t)num_return_values);
+    sp = Perl_stack_grow(aTHX_ sp, sp, (SSize_t)num_return_values);
   }
 
   /* Push return value on the Perl stack, convert number to Perl SV. */

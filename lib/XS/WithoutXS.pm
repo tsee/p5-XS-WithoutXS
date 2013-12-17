@@ -1,5 +1,5 @@
 package XS::WithoutXS;
-use 5.12.0;
+use 5.008005;
 use warnings;
 use DynaLoader ();
 
@@ -21,7 +21,7 @@ sub newXS {
   my ($func_name, $full_symbol_name, $filename) = @_;
   my $sym = DynaLoader::dl_find_symbol($SharedLibrary, $full_symbol_name);
   die "Failed to locate $full_symbol_name" if not defined $sym;
-  DynaLoader::dl_install_xsub($func_name, $sym, $filename // "WithoutXS");
+  DynaLoader::dl_install_xsub($func_name, $sym, defined $filename ? $filename : "WithoutXS");
 }
 
 
