@@ -33,7 +33,7 @@ sub setup_so_access {
 
   my @pkg_components = split /::/, $pkg;
 
-  my $pkg_path = join "-", @pkg_components;
+  my $pkg_path = join "/", @pkg_components;
   my @dirs = (map "-L$_/auto/$pkg_path", @INC);
   my (@mod_files) = DynaLoader::dl_findfile(@dirs, $pkg_components[-1]);
   die "Failed to locate shared library for '$pkg'"
