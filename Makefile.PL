@@ -12,6 +12,6 @@ WriteMakefile(
     OBJECT         => '$(O_FILES)', # link all the C files too
     #export list of the binary, on some OSes (Win32 for ex.) all symbols are
     #private from the dynamic linker unless explicitly specified
-    FUNCLIST       => ['my_sum_xs_macros_are_evil', 'my_sum'],
+    FUNCLIST       => ['my_sum_no_macros', 'my_sum', 'boot_XS__WithoutXS'],
 );
 

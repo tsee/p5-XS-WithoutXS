@@ -11,7 +11,7 @@ setup_so_access(__PACKAGE__); # assuming package==dist name, see also below
 
 # Install the test subroutines!
 newXS("my_sum", "my_sum", "this_is_not_xs.c");
-newXS("my_sum_no_xs_macros", "my_sum_xs_macros_are_evil", "this_is_not_xs.c");
+newXS("my_sum_no_macros", "my_sum_no_macros", "this_is_not_xs.c");
 
 
 # Locates the given symbol and, with the full assumption that
